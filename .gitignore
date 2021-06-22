@@ -31,7 +31,11 @@ nbbuild/
 dist/
 nbdist/
 
+# Other files
 db.properties
+.classpath
+.project
+build.fxbuild
 
 # Eclipse
 .settings/
