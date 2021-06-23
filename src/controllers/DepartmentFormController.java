@@ -1,9 +1,12 @@
 package controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import database.dbException;
+import gui.listeners.DataChangeListener;
 import gui.utils.Alerts;
 import gui.utils.Constraints;
 import gui.utils.Utils;
@@ -22,6 +25,8 @@ public class DepartmentFormController implements Initializable{
 	private Department department;
 	
 	private DepartmentService service;
+	
+	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 	
 	@FXML
 	private TextField txtId;
@@ -49,6 +54,7 @@ public class DepartmentFormController implements Initializable{
 		try {
 			department = getFormData();
 			service.saveOrUpdate(department);
+			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
 		}
 		catch (dbException exception) {
@@ -56,7 +62,7 @@ public class DepartmentFormController implements Initializable{
 		}
 		
 	}
-	
+
 	@FXML
 	public void onBtnCancelAction(ActionEvent event) {
 		Utils.currentStage(event).close();
@@ -68,6 +74,10 @@ public class DepartmentFormController implements Initializable{
 	
 	public void setDepartmentService(DepartmentService service) {
 		this.service = service;
+	}
+	
+	public void subscribeDataChangeListener(DataChangeListener listener) {
+		dataChangeListeners.add(listener);
 	}
 	
 	@Override
@@ -93,5 +103,11 @@ public class DepartmentFormController implements Initializable{
 		department.setId(Utils.tryParseToInteger(txtId.getText()));
 		department.setName(txtName.getText().toUpperCase());
 		return department;
+	}
+	
+	private void notifyDataChangeListeners() {
+		for (DataChangeListener listener : dataChangeListeners) {
+			listener.onDataChanged();
+		}
 	}
 }
