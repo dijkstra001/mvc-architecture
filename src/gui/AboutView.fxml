@@ -1,5 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="204.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController" />
+
+<VBox prefHeight="204.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
+   <children>
+      <Label text="Sobre o aplicativo">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="10.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <Label layoutX="10.0" layoutY="10.0" text="Esse aplicativo tem como objetivo:">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="10.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <Label layoutX="10.0" layoutY="25.0" text="1. Apresentar o modelo de padrão de arquitetura de software M.V.C." wrapText="true">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="10.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <Label layoutX="10.0" layoutY="41.0" text="2. Exibir a aplicabilidade do padrão em aplicações desktop; " wrapText="true">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="10.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <Label layoutX="10.0" layoutY="56.0" text="3. Elencar os principais benefícios desse padrão de arquitetura." wrapText="true">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="10.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+   </children>
+</VBox>
