@@ -46,7 +46,8 @@ public class DepartmentViewController implements Initializable{
 	@FXML
 	public void onButtonClick(ActionEvent event) {
 		Stage parentStage = gui.utils.Utils.currentStage(event);
-		createDialogForm("/gui/DepartmentForm.fxml", parentStage);
+		Department department = new Department();
+		createDialogForm(department, "/gui/DepartmentForm.fxml", parentStage);
 	}
 	
 	public void setDepartmentService(DepartmentService service) {
@@ -75,10 +76,15 @@ public class DepartmentViewController implements Initializable{
 		tableViewDepartment.prefHeightProperty().bind(stage.heightProperty());
 	}
 	
-	private void createDialogForm(String absoluteName, Stage parentStage) {
+	private void createDialogForm(Department department, String absoluteName, Stage parentStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
+			
+			DepartmentFormController controller = loader.getController();
+			controller.setDepartment(department);
+			controller.setDepartmentService(service);
+			controller.updateFormData();
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Informe os dados do departamento:");
