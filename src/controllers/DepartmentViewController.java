@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 import application.Main;
 import gui.listeners.DataChangeListener;
 import gui.utils.Alerts;
+import gui.utils.Utils;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -38,6 +41,9 @@ public class DepartmentViewController implements Initializable, DataChangeListen
 	
 	@FXML
 	private TableColumn<Department, String> tableColumnName;
+	
+	@FXML
+	private TableColumn<Department, Department> tableColumnEdit;
 	
 	@FXML
 	private Button buttonDepartment;
@@ -62,6 +68,7 @@ public class DepartmentViewController implements Initializable, DataChangeListen
 		List<Department> list = service.findAll();
 		obsList = FXCollections.observableArrayList(list);
 		tableViewDepartment.setItems(obsList);
+		initEditButtons();
 	}
 	
 	@Override
@@ -85,8 +92,8 @@ public class DepartmentViewController implements Initializable, DataChangeListen
 			DepartmentFormController controller = loader.getController();
 			controller.setDepartment(department);
 			controller.setDepartmentService(service);
-			controller.subscribeDataChangeListener(this);
 			controller.updateFormData();
+			controller.subscribeDataChangeListener(this);
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Informe os dados do departamento:");
@@ -105,5 +112,26 @@ public class DepartmentViewController implements Initializable, DataChangeListen
 	@Override
 	public void onDataChanged() {
 		updateTableView();
+	}
+	
+	private void initEditButtons() {
+		tableColumnEdit.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+		tableColumnEdit.setCellFactory(oaram -> new TableCell<Department, Department>(){
+			private final Button btn = new Button("Editar");
+			
+			@Override
+			protected void updateItem(Department department, boolean empty) {
+				super.updateItem(department, empty);
+				
+				if (department == null) {
+					setGraphic(null);
+					return;
+				}
+				
+				setGraphic(btn);
+				btn.setOnAction(event -> createDialogForm(department, "/gui/DepartmentForm.fxml", 
+						Utils.currentStage(event)));
+				}
+		});
 	}
 }

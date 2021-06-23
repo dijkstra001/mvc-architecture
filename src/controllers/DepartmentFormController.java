@@ -3,7 +3,9 @@ package controllers;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import database.dbException;
 import gui.listeners.DataChangeListener;
@@ -18,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.entities.Department;
+import model.exceptions.ValidationException;
 import model.services.DepartmentService;
 
 public class DepartmentFormController implements Initializable{
@@ -61,6 +64,9 @@ public class DepartmentFormController implements Initializable{
 			Alerts.showAlert("Erro ao salvar os dados", null, exception.getMessage(), AlertType.WARNING);
 		}
 		
+		catch (ValidationException exception) {
+			setErrorMessage(exception.getErrors());
+		}	
 	}
 
 	@FXML
@@ -100,14 +106,33 @@ public class DepartmentFormController implements Initializable{
 	
 	private Department getFormData() {
 		Department department = new Department();
+		
+		ValidationException validation = new ValidationException("Exceção de validação.");
+		
 		department.setId(Utils.tryParseToInteger(txtId.getText()));
-		department.setName(txtName.getText().toUpperCase());
+		department.setName(txtName.getText());
+		
+		if (txtName.getText() == null || txtName.getText().trim().equals("")) {
+			validation.addError("name", "O campo não pode estar vazio!");
+		}
+		
+		if (validation.getErrors().size() > 0) {
+			throw validation;
+		}
 		return department;
 	}
 	
 	private void notifyDataChangeListeners() {
 		for (DataChangeListener listener : dataChangeListeners) {
 			listener.onDataChanged();
+		}
+	}
+	
+	private void setErrorMessage(Map<String, String> errors) {
+		Set<String> fields = errors.keySet();
+		
+		if (fields.contains("name")) {
+			labelErrorName.setText(errors.get("name"));
 		}
 	}
 }

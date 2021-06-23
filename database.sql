@@ -16,10 +16,10 @@ CREATE TABLE seller (
 );
 
 INSERT INTO department (Name) VALUES 
-  ('COMPUTADORES'),
-  ('ELETR‘NICOS'),
-  ('ROUPAS'),
-  ('LIVROS');
+  ('Computadores'),
+  ('Eletr√¥nicos'),
+  ('Roupas'),
+  ('Livros');
 
 INSERT INTO seller (Name, Email, BirthDate, BaseSalary, DepartmentId) VALUES 
   ('Bob Brown','bob@gmail.com','1998-04-21 00:00:00',1000,1),
