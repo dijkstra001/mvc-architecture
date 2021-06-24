@@ -110,11 +110,11 @@ public class DepartmentFormController implements Initializable{
 		ValidationException validation = new ValidationException("Exceção de validação.");
 		
 		department.setId(Utils.tryParseToInteger(txtId.getText()));
-		department.setName(txtName.getText());
 		
 		if (txtName.getText() == null || txtName.getText().trim().equals("")) {
 			validation.addError("name", "O campo não pode estar vazio!");
 		}
+		department.setName(txtName.getText());
 		
 		if (validation.getErrors().size() > 0) {
 			throw validation;

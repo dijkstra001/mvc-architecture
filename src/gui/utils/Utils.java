@@ -28,6 +28,15 @@ public class Utils {
 		}
 	}
 	
+	public static Double tryParseToDouble(String text) {
+		try {
+			return Double.parseDouble(text);
+		}
+		catch(NumberFormatException exception) {
+			return null;
+		}
+	}
+	
 	public static <T> void formatTableColumnDate(TableColumn<T, Date> tableColumn, String format){
 		tableColumn.setCellFactory(column -> {
 			TableCell<T, Date> cell = new TableCell<T, Date>(){
