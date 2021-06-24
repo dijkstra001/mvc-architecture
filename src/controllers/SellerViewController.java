@@ -31,6 +31,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Seller;
+import model.services.DepartmentService;
 import model.services.SellerService;
 
 public class SellerViewController implements Initializable, DataChangeListener{
@@ -114,9 +115,10 @@ public class SellerViewController implements Initializable, DataChangeListener{
 			
 			SellerFormController controller = loader.getController();
 			controller.setSeller(seller);
-			controller.setSellerService(service);
-			controller.updateFormData();
+			controller.setServices(new SellerService(), new DepartmentService());
+			controller.loadAssociationsObjects();
 			controller.subscribeDataChangeListener(this);
+			controller.updateFormData();
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Informe os dados do vendedor:");
