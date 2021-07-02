@@ -42,7 +42,7 @@ Na tabela abaixo, constam os links para acessar os pacotes de cada componente da
 |  Controllers |  Célula de conteúdo |
 |  Views |  Célula de conteúdo |
 |  Models¹ |  Célula de conteúdo |
-|  Models² |  Célula de conteúdo |
+|  Models² |  [Conexão com banco de dados](https://github.com/dijkstra001/mvc-architecture/tree/main/src/model/dao) |
 |  Models³ |  Célula de conteúdo |
 
 ¹ Refere-se ao model das entidades.
