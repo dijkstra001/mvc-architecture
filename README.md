@@ -3,7 +3,7 @@
 
 #### 1. Definição:
 
-O M.V.C. é utilizado em muitos projetos devido a arquitetura que possui, o que possibilita a divisão do projeto em camadas muito bem definidas. Cada uma delas, o Model, o Controller e a View, executa apenas o que for atrubuído à sua responsabilidade.
+O M.V.C. é utilizado em muitos projetos devido a arquitetura que possui, o que possibilita a divisão do projeto em camadas muito bem definidas. Cada uma delas, o Model, o Controller e a View, executa apenas o que for atribuído à sua responsabilidade.
 
 A utilização do padrão M.V.C. traz como benefício o isolamento das regras de negócios da lógica de apresentação, que é a interface com o usuário. Isto possibilita a existência de várias interfaces com o usuário que podem ser modificadas sem a necessidade de alterar as regras de negócios, proporcionando muito mais flexibilidade e oportunidades de reuso das classes.
 
@@ -39,16 +39,16 @@ Na tabela abaixo, constam os links para acessar os pacotes de cada componente da
 
 | Pacote  |  Link  |
 | ------------------- | ------------------- |
-|  Controllers |  Célula de conteúdo |
-|  Views |  Célula de conteúdo |
-|  Models¹ |  Célula de conteúdo |
-|  Models² |  [Conexão com banco de dados](https://github.com/dijkstra001/mvc-architecture/tree/main/src/model/dao) |
-|  Models³ |  Célula de conteúdo |
-
-¹ Refere-se ao model das entidades.
-² Refere-se ao model do acesso ao banco (impl)
-³ Refere-se ao model xxx
+|  Model Entities |  [Implementação das entidades](https://github.com/dijkstra001/mvc-architecture/tree/main/src/model/entities) |
+|  Model Impl |  [Conexão com banco de dados](https://github.com/dijkstra001/mvc-architecture/tree/main/src/model/dao) |
+|  Model Services |  [Implementação dos serviços](https://github.com/dijkstra001/mvc-architecture/tree/main/src/model/services) |
+|  Views |  [Implementação das views](https://github.com/dijkstra001/mvc-architecture/tree/main/src/gui) |
+|  Controllers |  [Controladores](https://github.com/dijkstra001/mvc-architecture/tree/main/src/controllers) |
+|  Configuração do Banco |  [Configuração MYSQL](https://github.com/dijkstra001/mvc-architecture/tree/main/src/database) |
 
 #### 3. Conclusão:
+Com o desenvolvimento desse projeto, podemos concluir que a Arquitetura M.V.C., apesar de algumas complexidades para desenvolver soluções com base nas boas práticas de desenvolvimento, facilita o entendimento do que está sendo desenvolvido, além de separar os problemas a serem solucionados em pequenas partes, onde cada parte fica responsável por determinada tarefa. `Dividir para Conquistar`
+
+Mesmo algumas soluções serem mais simples que a Arquitetura M.V.C., sua utilização facilita a correção e alteração de regras de negócios, assim como possibilita a flexibilidade de mudanças. Utilizando as boas práticas de desenvolvimento, assim como outros padrões de projetos, dependendo da situação, o software será bem desenvolvido e agregará valor para as atividades das pessoas que o utilizarão.
 
 <img alt="Java" src="https://img.shields.io/badge/java-%23ED8B00.svg?&style=for-the-badge&logo=java&logoColor=white"/> 
